@@ -1,0 +1,17 @@
+# Index URL for PyTorch packages
+--index-url https://download.pytorch.org/whl/cpu
+
+gradio==4.22.0
+kaggle==1.6.6
+lightning==2.2.1
+numpy==1.26.2
+pandas==2.1.4
+pillow==10.2.0
+scikit-learn==1.3.2
+torch==2.2.1
+torch-tb-profiler==0.4.3
+torchaudio==2.2.1
+torchmetrics==1.2.0
+torchvision==0.17.1
+tornado==6.4
+tqdm==4.66.2
