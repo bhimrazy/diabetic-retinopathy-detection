@@ -1,4 +1,8 @@
 import os
+
+import cv2
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image, ImageOps
 
@@ -77,3 +81,66 @@ def track_files(folder_path, extensions=('.jpg', '.jpeg', '.png')):
                 file_list.append(file_path)
 
     return file_list
+
+
+
+def crop_circle_roi(image_path):
+    """
+    Crop the circular Region of Interest (ROI) from a fundus image.
+
+    Args:
+    - image_path (str): Path to the fundus image.
+
+    Returns:
+    - cropped_roi (numpy.ndarray): The cropped circular Region of Interest.
+    """
+    # Read the image
+    image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+
+    # Convert the image to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Apply thresholding to binarize the image
+    _, thresholded_image = cv2.threshold(gray_image, 50, 255, cv2.THRESH_BINARY)
+
+    # Find contours in the binary image
+    contours, _ = cv2.findContours(thresholded_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Assuming the largest contour corresponds to the ROI
+    contour = max(contours, key=cv2.contourArea)
+
+    # Get the bounding rectangle of the contour
+    x, y, w, h = cv2.boundingRect(contour)
+
+    # Crop the circular ROI using the bounding rectangle
+    cropped_roi = image[y:y+h, x:x+w]
+
+    return cropped_roi
+
+def plot_image_grid(image_paths, roi_crop=False):
+    """
+    Create a grid plot with a maximum of 16 images.
+
+    Args:
+    - image_paths (list): A list of image paths to be plotted.
+
+    Returns:
+    - None
+    """
+    num_images = min(len(image_paths), 16)
+    num_rows = (num_images - 1) // 4 + 1
+    fig, axes = plt.subplots(num_rows, 4, figsize=(12, 3 * num_rows))
+
+    for i, ax in enumerate(axes.flat):
+        if i < num_images:
+            if roi_crop:
+                img = crop_and_pad_image(image_paths[i])
+            else:
+                img = mpimg.imread(image_paths[i])
+            ax.imshow(img)
+            ax.axis('off')
+        else:
+            ax.axis('off')
+
+    plt.tight_layout()
+    plt.show()
