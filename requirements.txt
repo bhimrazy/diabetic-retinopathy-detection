@@ -1,7 +1,7 @@
 # Index URL for PyTorch packages
 --index-url https://download.pytorch.org/whl/cpu
 
-gradio==4.22.0
+gradio
 kaggle==1.6.6
 lightning==2.2.1
 numpy==1.26.2
