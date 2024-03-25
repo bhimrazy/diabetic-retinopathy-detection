@@ -13,3 +13,7 @@ Check out the configuration reference at https://huggingface.co/docs/hub/spaces-
 
 # Diabetic Retinopathy Detection
 
+
+
+## Gradio App
+<iframe src="https://bhimrazy-diabetic-retinopathy-detection.hf.space" frameborder="0" width="1920" height="1080"></iframe>
