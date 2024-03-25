@@ -3,7 +3,7 @@ import gradio as gr
 from src.model import DRModel
 from torchvision import transforms as T
 
-CHECKPOINT_PATH = "checkpoints/epoch=19-step=8800.ckpt"
+CHECKPOINT_PATH = "artifacts/dr-model.ckpt"
 model = DRModel.load_from_checkpoint(CHECKPOINT_PATH)
 
 labels = {
