@@ -13,12 +13,12 @@ torch.set_float32_matmul_precision("high")
 
 
 # Init DataModule
-dm = DRDataModule(batch_size=128, num_workers=8)
+dm = DRDataModule(batch_size=96, num_workers=8)
 dm.setup()
 
 # Init model from datamodule's attributes
 model = DRModel(
-    num_classes=dm.num_classes, learning_rate=3e-4, class_weights=dm.class_weights
+    num_classes=dm.num_classes, learning_rate=3e-5, class_weights=dm.class_weights
 )
 
 # Init logger
@@ -32,14 +32,17 @@ checkpoint_callback = ModelCheckpoint(
     dirpath="checkpoints",
 )
 
+# Init LearningRateMonitor
+lr_monitor = LearningRateMonitor(logging_interval="step")
+
 # Init trainer
 trainer = L.Trainer(
     max_epochs=20,
     accelerator="auto",
     devices="auto",
     logger=logger,
-    callbacks=[checkpoint_callback],
-    enable_checkpointing=True
+    callbacks=[checkpoint_callback, lr_monitor],
+    enable_checkpointing=True,
 )
 
 # Pass the datamodule as arg to trainer.fit to override model hooks :)
