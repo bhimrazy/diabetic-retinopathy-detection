@@ -10,7 +10,11 @@ license: mit
 ---
 
 
-# Diabetic Retinopathy Detection
+# Diabetic Retinopathy Detection: Utilizing Multiprocessing for Processing Large Datasets and Transfer Learning to Fine-Tune Deep Learning Models
+Efficiently process large datasets & develop advanced model pipelines for diabetic retinopathy detection. Streamlining diagnosis.
+
+## TL;DR: 
+In this project, we handle large datasets efficiently by downloading, extracting, and preparing them for analysis. Next, we use PyTorch Lightning to develop a powerful system for diabetic retinopathy detection, categorizing images into different stages of the disease. We enhance our model pipeline with various pretrained backbone models and track progress using TensorBoard. Additionally, we create a user-friendly web app to demonstrate our model's capabilities. Our approach aims to streamline both data processing and model development for accurate and accessible diabetic retinopathy diagnosis.
 
 
 
