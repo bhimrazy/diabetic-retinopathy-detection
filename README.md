@@ -102,11 +102,11 @@ Finally, split the data into train and validation sets and save them to CSV file
 python scripts/split_dataset.py
 ```
 
-### Training Model and Monitoring Progress with TensorBoard
+## Training Model and Monitoring Progress with TensorBoard
 
 In the previous section, we covered how to set up your dataset and configure your training pipeline using a `Config` class. Now, let's dive into training your model and monitoring its progress using TensorBoard.
 
-#### Exploring Data Transformations and Augmentations
+### Exploring Data Transformations and Augmentations
 
 If you're looking for examples of data transformations and augmentations, you can explore the provided `notebook.ipynb` file. This notebook contains various examples of data preprocessing techniques, such as resizing, cropping, rotation, and more.
 
@@ -115,7 +115,7 @@ To open and explore the notebook:
 3. Open the notebook and run the cells to see different transformation and augmentation examples.
 
 
-#### Training the Model
+### Training the Model
 
 To train your model, you can use the provided `train.py` script. Make sure you have set up your environment correctly and installed all dependencies as mentioned earlier. Here's how you can run the training pipeline:
 
@@ -129,7 +129,7 @@ python train.py
 
 This command will execute the training script and start training your model based on the parameters specified in your `Config` class.
 
-#### Monitoring Training Progress with TensorBoard
+### Monitoring Training Progress with TensorBoard
 
 TensorBoard is a powerful tool for visualizing and monitoring the training process. You can use it to track metrics such as loss, accuracy, and learning rate over time, as well as visualize model graphs and embeddings.
 
