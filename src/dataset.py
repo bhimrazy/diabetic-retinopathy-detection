@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 from sklearn.utils.class_weight import compute_class_weight
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 from torchvision.io import read_image
 from torchvision.transforms import v2 as T
 
@@ -78,7 +78,9 @@ class DRDataModule(L.LightningDataModule):
         # Define the transformations
         self.train_transform = T.Compose(
             [
-                T.Resize((224, 224), antialias=True),
+                T.Resize((512, 512), antialias=True),
+                T.RandomAffine(degrees=10, translate=(0.01, 0.01), scale=(0.99, 1.01)),
+                T.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.2, hue=0.01),
                 T.RandomHorizontalFlip(p=0.5),
                 T.ToDtype(torch.float32, scale=True),
                 T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
@@ -87,7 +89,7 @@ class DRDataModule(L.LightningDataModule):
 
         self.val_transform = T.Compose(
             [
-                T.Resize((224, 224), antialias=True),
+                T.Resize((512, 512), antialias=True),
                 T.ToDtype(torch.float32, scale=True),
                 T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
             ]
@@ -101,13 +103,14 @@ class DRDataModule(L.LightningDataModule):
 
         # compute class weights
         labels = self.train_dataset.labels.numpy()
-        self.class_weights = self.compute_class_weights(labels)
+        self.class_weights = None # self.compute_class_weights(labels)
 
     def train_dataloader(self):
         return DataLoader(
             self.train_dataset,
             batch_size=self.batch_size,
-            shuffle=True,
+            sampler=self._get_weighted_sampler(self.train_dataset.labels.numpy()),
+            # shuffle=True,
             num_workers=self.num_workers,
         )
 
@@ -121,3 +124,21 @@ class DRDataModule(L.LightningDataModule):
             class_weight="balanced", classes=np.unique(labels), y=labels
         )
         return torch.tensor(class_weights, dtype=torch.float32)
+    
+    def _get_weighted_sampler(self, labels: np.ndarray) -> WeightedRandomSampler:
+        """Returns a WeightedRandomSampler based on class weights.
+        
+        The weights tensor should contain a weight for each sample, not the class weights.
+        Have a look at this post for an example: https://discuss.pytorch.org/t/how-to-handle-imbalanced-classes/11264/2
+        https://www.maskaravivek.com/post/pytorch-weighted-random-sampler/
+        """
+        
+
+        class_sample_count = np.array([len(np.where(labels == label)[0]) for label in np.unique(labels)])
+        weight = 1. / class_sample_count
+        samples_weight = np.array([weight[label] for label in labels])
+        samples_weight = torch.from_numpy(samples_weight)
+
+        # class_weights = compute_class_weight("balanced", classes=np.unique(labels), y=labels)
+        # class_weights_tensor = torch.tensor(class_weights, dtype=torch.float32)
+        return WeightedRandomSampler(weights=samples_weight, num_samples=len(labels), replacement=True)
