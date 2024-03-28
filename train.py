@@ -42,14 +42,14 @@ lr_monitor = LearningRateMonitor(logging_interval="step")
 # early stopping
 early_stopping = EarlyStopping(
     monitor="val_loss",
-    patience=5,
+    patience=10,
     verbose=True,
     mode="min",
 )
 
 # Init trainer
 trainer = L.Trainer(
-    max_epochs=20,
+    max_epochs=50,
     accelerator="auto",
     devices="auto",
     logger=logger,
