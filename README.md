@@ -1,5 +1,5 @@
 ---
-title: Diabetic Retinopathy Detection
+title: Diabetic Retinopathy Detection App
 emoji: 🐢
 colorFrom: blue
 colorTo: purple
@@ -23,7 +23,7 @@ In this project, we handle large datasets efficiently by downloading, extracting
 
 
 
-## Gradio Diabetic Retinopathy Detection App
+## Gradio - Diabetic Retinopathy Detection App
 <!-- 
 <iframe src="https://bhimrazy-diabetic-retinopathy-detection.hf.space" frameborder="0" width="1920" height="1080"></iframe>
 -->
@@ -42,3 +42,15 @@ Use the interactive interface below to upload retinal images and get predictions
 2. Upload a retinal image by clicking on the "Upload Image" button.
 3. Once the image is uploaded, the model will process it and provide predictions on the severity of diabetic retinopathy.
 4. Interpret the results provided by the model.
+
+
+
+## License
+
+[MIT](./LICENSE)
+
+
+## Authors
+
+- [@bhimrazy](https://www.github.com/bhimrazy)
+
