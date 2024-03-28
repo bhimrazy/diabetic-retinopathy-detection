@@ -21,7 +21,7 @@ def main(data_dir, csv_path, train_csv_path, val_csv_path, test_size=0.2, random
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Split dataset into train and validation sets.")
-    parser.add_argument("--data_dir", type=str, default="data/diabetic-retinopathy-dataset/train", help="Directory containing images.")
+    parser.add_argument("--data_dir", type=str, default="data/diabetic-retinopathy-dataset/resized/train", help="Directory containing images.")
     parser.add_argument("--csv_path", type=str, default="data/diabetic-retinopathy-dataset/trainLabels.csv", help="Path to CSV file containing image labels.")
     parser.add_argument("--train_csv_path", type=str, default="data/diabetic-retinopathy-dataset/train.csv", help="Path to save train CSV file.")
     parser.add_argument("--val_csv_path", type=str, default="data/diabetic-retinopathy-dataset/val.csv", help="Path to save validation CSV file.")
