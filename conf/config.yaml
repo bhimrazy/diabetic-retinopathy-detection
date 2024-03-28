@@ -1,0 +1,18 @@
+# data:
+train_csv_path: data/diabetic-retinopathy-dataset/train.csv
+val_csv_path: data/diabetic-retinopathy-dataset/val.csv
+
+# experiment:
+seed: 42
+batch_size: 128
+num_workers: 2
+use_class_weighting: false
+use_weighted_sampler: false  # class weighting and weighted sampler are mutually exclusive
+model_name: "resnet50"
+max_epochs: 50
+image_size: 224
+learning_rate: 3e-4
+use_scheduler: true
+
+logs_dir: logs
+checkpoint_dirpath: artifacts/checkpoints
