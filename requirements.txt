@@ -1,4 +1,5 @@
 gradio
+hydra-core==1.3.2
 kaggle==1.6.6
 lightning==2.2.1
 numpy==1.26.2
