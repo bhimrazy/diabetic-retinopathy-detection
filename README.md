@@ -57,11 +57,11 @@ cd dr-detection
 pip install -r requirements.txt
 ```
 
-## Step 1: Download the Dataset
+### Step 1: Download the Dataset
 
 There are two ways to download the dataset:
 
-### First Way: Downloading as a Complete Zip File
+#### First Way: Downloading as a Complete Zip File
 
 ```bash
 kaggle competitions download -c diabetic-retinopathy-detection
@@ -71,7 +71,7 @@ unzip diabetic-retinopathy-detection.zip -d data/diabetic-retinopathy-detection
 rm diabetic-retinopathy-detection.zip
 ```
 
-### Second Way: Downloading as Parts
+#### Second Way: Downloading as Parts
 
 ```bash
 ./scripts/download-dr-dataset.sh
@@ -80,7 +80,7 @@ rm diabetic-retinopathy-detection.zip
 ./scripts/merge_and_extract.sh
 ```
 
-## Step 2: Preprocess Images
+### Step 2: Preprocess Images
 
 Once the dataset is downloaded, preprocess the images to crop and resize them.
 
@@ -94,13 +94,61 @@ python scripts/crop_and_resize.py --src data/diabetic-retinopathy-dataset/train 
 python scripts/crop_and_resize.py --src data/diabetic-retinopathy-dataset/test data/diabetic-retinopathy-dataset/resized/test
 ```
 
-## Step 3: Split Data and Save to CSV
+### Step 3: Split Data and Save to CSV
 
 Finally, split the data into train and validation sets and save them to CSV files.
 
 ```bash
 python scripts/split_dataset.py
 ```
+
+## Training Model and Monitoring Progress with TensorBoard
+
+In the previous section, we covered how to set up your dataset and configure your training pipeline using a `Config` class. Now, let's dive into training your model and monitoring its progress using TensorBoard.
+
+### Exploring Data Transformations and Augmentations
+
+If you're looking for examples of data transformations and augmentations, you can explore the provided `notebook.ipynb` file. This notebook contains various examples of data preprocessing techniques, such as resizing, cropping, rotation, and more.
+
+To open and explore the notebook:
+1. Navigate to the directory containing the `notebook.ipynb` file.
+3. Open the notebook and run the cells to see different transformation and augmentation examples.
+
+
+### Training the Model
+
+To train your model, you can use the provided `train.py` script. Make sure you have set up your environment correctly and installed all dependencies as mentioned earlier. Here's how you can run the training pipeline:
+
+1. Open your terminal or command prompt.
+2. Navigate to the directory containing the `train.py` script.
+3. Run the following command:
+
+```bash
+python train.py
+```
+
+This command will execute the training script and start training your model based on the parameters specified in your `Config` class.
+
+### Monitoring Training Progress with TensorBoard
+
+TensorBoard is a powerful tool for visualizing and monitoring the training process. You can use it to track metrics such as loss, accuracy, and learning rate over time, as well as visualize model graphs and embeddings.
+
+To load TensorBoard logs and monitor your training progress:
+
+1. Ensure you have TensorBoard installed. You can install it via pip:
+
+```bash
+pip install tensorboard
+```
+
+2. Once your model starts training, TensorBoard logs will be generated in the specified directory (e.g., `"logs/"`). You can launch TensorBoard using the following command:
+
+```bash
+tensorboard --logdir=logs/
+```
+
+This command will start a TensorBoard server locally, allowing you to view your training metrics and visualizations in your web browser.
+
 
 ## Gradio - Diabetic Retinopathy Detection App
 <!-- 
