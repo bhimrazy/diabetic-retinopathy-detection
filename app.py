@@ -5,6 +5,7 @@ from torchvision import transforms as T
 
 CHECKPOINT_PATH = "artifacts/dr-model.ckpt"
 model = DRModel.load_from_checkpoint(CHECKPOINT_PATH)
+model.eval()
 
 labels = {
     0: "No DR",
@@ -22,6 +23,7 @@ transform = T.Compose(
     ]
 )
 
+
 # Define the prediction function
 def predict(input_img):
     input_img = transform(input_img).unsqueeze(0)
@@ -36,7 +38,10 @@ dr_app = gr.Interface(
     fn=predict,
     inputs=gr.Image(type="pil"),
     outputs=gr.Label(),
-    title="Diabetic Retinopathy Detection",
+    title="Diabetic Retinopathy Detection App",
+    description="Welcome to our Diabetic Retinopathy Detection App! \
+        This app utilizes deep learning models to detect diabetic retinopathy in retinal images.\
+        Diabetic retinopathy is a common complication of diabetes and early detection is crucial for effective treatment.",
     examples=[
         "data/sample/10_left.jpeg",
         "data/sample/10_right.jpeg",
