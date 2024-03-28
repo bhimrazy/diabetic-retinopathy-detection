@@ -26,7 +26,7 @@ model = DRModel(
 )
 
 # Init logger
-logger = TensorBoardLogger(save_dir="artifacts")
+logger = TensorBoardLogger(save_dir="logs",name="")
 # Init callbacks
 checkpoint_callback = ModelCheckpoint(
     monitor="val_loss",
