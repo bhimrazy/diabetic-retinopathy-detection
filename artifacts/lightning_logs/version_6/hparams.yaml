@@ -1,0 +1,3 @@
+class_weights: null
+learning_rate: 0.001
+num_classes: 5
