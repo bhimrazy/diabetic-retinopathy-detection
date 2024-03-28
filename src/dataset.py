@@ -78,7 +78,7 @@ class DRDataModule(L.LightningDataModule):
         # Define the transformations
         self.train_transform = T.Compose(
             [
-                T.Resize((512, 512), antialias=True),
+                T.Resize((224, 224), antialias=True),
                 T.RandomAffine(degrees=10, translate=(0.01, 0.01), scale=(0.99, 1.01)),
                 T.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.2, hue=0.01),
                 T.RandomHorizontalFlip(p=0.5),
@@ -89,7 +89,7 @@ class DRDataModule(L.LightningDataModule):
 
         self.val_transform = T.Compose(
             [
-                T.Resize((512, 512), antialias=True),
+                T.Resize((224, 224), antialias=True),
                 T.ToDtype(torch.float32, scale=True),
                 T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
             ]
