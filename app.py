@@ -4,7 +4,7 @@ from src.model import DRModel
 from torchvision import transforms as T
 
 CHECKPOINT_PATH = "artifacts/dr-model.ckpt"
-model = DRModel.load_from_checkpoint(CHECKPOINT_PATH)
+model = DRModel.load_from_checkpoint(CHECKPOINT_PATH, map_location="cpu")
 model.eval()
 
 labels = {
@@ -17,7 +17,7 @@ labels = {
 
 transform = T.Compose(
     [
-        T.Resize((192, 192)),
+        T.Resize((224, 224)),
         T.ToTensor(),
         T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ]
