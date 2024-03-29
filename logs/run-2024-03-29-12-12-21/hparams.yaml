@@ -1,0 +1,5 @@
+num_classes: 5
+model_name: densenet169
+learning_rate: 0.0003
+class_weights: null
+use_scheduler: true
