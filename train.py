@@ -2,6 +2,7 @@ from os.path import join
 
 import hydra
 import lightning as L
+import torch
 from lightning.pytorch.callbacks import (
     EarlyStopping,
     LearningRateMonitor,
@@ -21,7 +22,7 @@ def train(cfg: DictConfig) -> None:
 
     # Seed everything for reproducibility
     L.seed_everything(cfg.seed, workers=True)
-    # torch.set_float32_matmul_precision("high")
+    torch.set_float32_matmul_precision("high")
 
     # Initialize DataModule
     dm = DRDataModule(
