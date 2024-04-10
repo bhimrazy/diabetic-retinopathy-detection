@@ -10,11 +10,17 @@ license: mit
 ---
 
 
+# Diabetic Retinopathy Detection: Utilizing Multiprocessing for Processing Large Datasets and Transfer Learning to Fine-Tune Deep Learning Models
+
+<a target="_blank" href="https://lightning.ai/bhimrajyadav/studios/diabetic-retinopathy-detection-utilizing-multiprocessing-for-processing-large-datasets-and-transfer-learning-to-fine-tune-deep-learning-models">
+  <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg" alt="Open In Studio"/>
+</a>
+
+
+Efficiently process large datasets & develop advanced model pipelines for diabetic retinopathy detection. Streamlining diagnosis.
+
 ![diabetic-retinopathy-detection](https://github.com/bhimrazy/diabetic-retinopathy-detection/assets/46085301/bb45b4cf-9441-435f-819a-176226e1ac00)
 
-
-# Diabetic Retinopathy Detection: Utilizing Multiprocessing for Processing Large Datasets and Transfer Learning to Fine-Tune Deep Learning Models
-Efficiently process large datasets & develop advanced model pipelines for diabetic retinopathy detection. Streamlining diagnosis.
 
 ## TL;DR: 
 In this project, large datasets are efficiently handled by downloading, extracting, and preparing them for analysis. Utilizing PyTorch Lightning, a robust system for diabetic retinopathy detection is developed, categorizing images into distinct disease stages. The model pipeline is enriched with various pretrained backbone models, with progress tracked using TensorBoard. Furthermore, a user-friendly web app is created to showcase the model's capabilities. The approach pursued aims to streamline both data processing and model development, facilitating accurate and accessible diabetic retinopathy diagnosis.
@@ -175,7 +181,7 @@ Use the interactive interface below to upload retinal images and get predictions
 [MIT](./LICENSE)
 
 
-## Authors
+## Author
 
 - [@bhimrazy](https://www.github.com/bhimrazy)
 
