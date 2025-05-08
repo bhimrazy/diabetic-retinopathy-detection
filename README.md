@@ -178,6 +178,22 @@ Use the interactive interface below to upload retinal images and get predictions
 3. Once the image is uploaded, the model will process it and provide predictions on the severity of diabetic retinopathy.
 4. Interpret the results provided by the model.
 
+## 📖 Citation
+
+If you use this repository or the associated blog in your work, please cite it as:
+
+```bibtex
+@misc{yadav2024drdetection,
+  author       = {Bhimraj Yadav},
+  title        = {Diabetic Retinopathy Detection Utilizing Multiprocessing for Processing Large Datasets and Transfer Learning to Fine-Tune Deep Learning Models},
+  year         = {2024},
+  version      = {0.1.0},
+  doi          = {10.5281/zenodo.15362036},
+  howpublished = {\url{https://github.com/bhimrazy/diabetic-retinopathy-detection}},
+  note         = {Blog: \url{https://lightning.ai/bhimrajyadav/studios/diabetic-retinopathy-detection-utilizing-multiprocessing-for-processing-large-datasets-and-transfer-learning-to-fine-tune-deep-learning-models}}
+}
+```
+
 ## License
 
 [MIT](./LICENSE)
